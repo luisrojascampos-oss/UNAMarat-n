@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Base de datos SQLite
+db/*.db
+db/*.db-journal
+
+# Registros y archivos del sistema
+*.log
+.DS_Store
+
+# Editores
+.vscode/
+.idea/

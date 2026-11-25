@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Expediente permanente del atleta (Principio UNAMaratón: 1 Atleta = 1 Expediente)
+model Athlete {
+  id             String    @id @default(cuid())
+  code           String    @unique // UNA-ATL-042
+  firstName      String
+  lastName       String
+  alias          String?
+  cedula         String?
+  birthDate      DateTime?
+  province       String?
+  status         String    @default("ACTIVO") // ACTIVO | TRANSICION | BAJA
+  specialty      String // MARATON | MEDIO_FONDO | 10K_5K | TRAIL_SALUD
+  emergencyName  String?
+  emergencyPhone String?
+  emergencyRel   String?
+  joinDate       DateTime  @default(now())
+
+  // Telemetría fisiológica (última referencia certificada)
+  vam        Float? // km/h (Test 2000m)
+  mss        Float? // km/h velocidad sprint máxima
+  hrMax      Int?
+  hrRest     Int?
+  vo2max     Float? // ml/kg/min
+  testDate   DateTime? // fecha del último test certificado
+  evaluator  String?
+
+  // Antropometría ISAK II
+  weightKg   Float?
+  heightCm   Float?
+  bodyFatPct Float?
+
+  // Objetivo competitivo
+  goalRace  String?
+  goalTime  String? // "Sub 2h 32m 00s"
+  goalPace  String? // "3:36 min/km"
+
+  // Bienestar / vigilancia
+  sleepHours Float?
+  fatigue    Int? // 0-10
+  doms       Int? // 0-10
+  readiness  Int? // 0-10
+  injuryNote String? // "Tendón de Aquiles" cuando hay molestia activa
+  riskAcwr   Float? // ratio ACWR cuando supera umbral (ej. 1.52)
+  trailElev  Int? // desnivel acumulado trail (m)
+
+  tests      Test2000[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+// Test de campo 2000m con parciales de 400m y trazabilidad CIEMHCAVI
+model Test2000 {
+  id          String   @id @default(cuid())
+  athleteId   String
+  athlete     Athlete  @relation(fields: [athleteId], references: [id], onDelete: Cascade)
+  date        DateTime
+  timeSeconds Float // tiempo total oficial
+  lapTimes    String // JSON: [72.8, 74.4, 76.2, 77.1, 74.5]
+  fcAvg       Int?
+  fcMax       Int?
+  fcRecovery  Int? // FC al minuto de recuperación
+  borg        Float? // Borg CR-10
+  tempC       Float?
+  humidity    Int?
+  windMs      Float?
+  evaluator   String?
+  venue       String?
+  notes       String?
+  createdAt   DateTime @default(now())
+}
+
+// Macrociclos competitivos en marcha
+model Macrocycle {
+  id         String @id @default(cuid())
+  name       String
+  phase      String
+  week       Int
+  totalWeeks Int
+  athletes   Int
+  colorKey   String // secondary | tertiary | primary
+  sortOrder  Int    @default(0)
+  active     Boolean @default(true)
+}

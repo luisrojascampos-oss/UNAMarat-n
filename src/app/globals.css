@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  src: url("/fonts/material-symbols-outlined.woff2") format("woff2");
+  font-display: block;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-label: var(--font-label), ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-tertiary: var(--m3-tertiary);
+  --color-on-tertiary: var(--m3-on-tertiary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ── Sistema Material 3 CIEMHCAVI ─────────────────────────── */
+  --color-surface: var(--m3-surface);
+  --color-on-surface: var(--m3-on-surface);
+  --color-on-background: var(--m3-on-background);
+  --color-surface-dim: var(--m3-surface-dim);
+  --color-surface-bright: var(--m3-surface-bright);
+  --color-surface-variant: var(--m3-surface-variant);
+  --color-on-surface-variant: var(--m3-on-surface-variant);
+  --color-surface-container: var(--m3-surface-container);
+  --color-surface-container-low: var(--m3-surface-container-low);
+  --color-surface-container-lowest: var(--m3-surface-container-lowest);
+  --color-surface-container-high: var(--m3-surface-container-high);
+  --color-surface-container-highest: var(--m3-surface-container-highest);
+  --color-outline: var(--m3-outline);
+  --color-outline-variant: var(--m3-outline-variant);
+  --color-error: var(--m3-error);
+  --color-on-error: var(--m3-on-error);
+  --color-error-container: var(--m3-error-container);
+  --color-on-error-container: var(--m3-on-error-container);
+  --color-primary-fixed: var(--m3-primary-fixed);
+  --color-on-primary-fixed: var(--m3-on-primary-fixed);
+  --color-primary-fixed-dim: var(--m3-primary-fixed-dim);
+  --color-on-primary-fixed-variant: var(--m3-on-primary-fixed-variant);
+  --color-secondary-fixed: var(--m3-secondary-fixed);
+  --color-on-secondary-fixed: var(--m3-on-secondary-fixed);
+  --color-secondary-fixed-dim: var(--m3-secondary-fixed-dim);
+  --color-on-secondary-fixed-variant: var(--m3-on-secondary-fixed-variant);
+  --color-secondary-container: var(--m3-secondary-container);
+  --color-on-secondary-container: var(--m3-on-secondary-container);
+  --color-tertiary-fixed: var(--m3-tertiary-fixed);
+  --color-on-tertiary-fixed: var(--m3-on-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--m3-tertiary-fixed-dim);
+  --color-on-tertiary-fixed-variant: var(--m3-on-tertiary-fixed-variant);
+  --color-tertiary-container: var(--m3-tertiary-container);
+  --color-on-tertiary-container: var(--m3-on-tertiary-container);
+  --color-inverse-surface: var(--m3-inverse-surface);
+  --color-inverse-on-surface: var(--m3-inverse-on-surface);
+  --color-inverse-primary: var(--m3-inverse-primary);
+  --color-surface-tint: var(--m3-surface-tint);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Esquema claro CIEMHCAVI (M3) */
+  --background: #faf8ff;
+  --foreground: #131b2e;
+  --card: #ffffff;
+  --card-foreground: #131b2e;
+  --popover: #ffffff;
+  --popover-foreground: #131b2e;
+  --primary: #970012;
+  --primary-foreground: #ffffff;
+  --secondary: #3d627d;
+  --secondary-foreground: #ffffff;
+  --muted: #eaedff;
+  --muted-foreground: #5c403d;
+  --accent: #eaedff;
+  --accent-foreground: #131b2e;
+  --destructive: #ba1a1a;
+  --border: #e5bdb9;
+  --input: #dae2fd;
+  --ring: #970012;
+  --chart-1: #970012;
+  --chart-2: #3d627d;
+  --chart-3: #00543d;
+  --chart-4: #bd0d1d;
+  --chart-5: #cae6ff;
+  --sidebar: #faf8ff;
+  --sidebar-foreground: #131b2e;
+  --sidebar-primary: #970012;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaedff;
+  --sidebar-accent-foreground: #131b2e;
+  --sidebar-border: #e5bdb9;
+  --sidebar-ring: #970012;
+
+  --m3-primary: #970012;
+  --m3-on-primary: #ffffff;
+  --m3-primary-container: #c1121f;
+  --m3-on-primary-container: #ffd2ce;
+  --m3-secondary: #3d627d;
+  --m3-on-secondary: #ffffff;
+  --m3-secondary-container: #b9dffe;
+  --m3-on-secondary-container: #3e637e;
+  --m3-tertiary: #00543d;
+  --m3-on-tertiary: #ffffff;
+  --m3-tertiary-container: #006f51;
+  --m3-on-tertiary-container: #4df8bf;
+  --m3-error: #ba1a1a;
+  --m3-on-error: #ffffff;
+  --m3-error-container: #ffdad6;
+  --m3-on-error-container: #93000a;
+  --m3-background: #faf8ff;
+  --m3-on-background: #131b2e;
+  --m3-surface: #faf8ff;
+  --m3-on-surface: #131b2e;
+  --m3-surface-variant: #dae2fd;
+  --m3-on-surface-variant: #5c403d;
+  --m3-surface-dim: #d2d9f4;
+  --m3-surface-bright: #faf8ff;
+  --m3-surface-container-lowest: #ffffff;
+  --m3-surface-container-low: #f2f3ff;
+  --m3-surface-container: #eaedff;
+  --m3-surface-container-high: #e2e7ff;
+  --m3-surface-container-highest: #dae2fd;
+  --m3-outline: #906f6c;
+  --m3-outline-variant: #e5bdb9;
+  --m3-inverse-surface: #283044;
+  --m3-inverse-on-surface: #eef0ff;
+  --m3-inverse-primary: #ffb3ad;
+  --m3-surface-tint: #bd0d1d;
+  /* Tokens fijos (no cambian en oscuro) */
+  --m3-primary-fixed: #ffdad6;
+  --m3-on-primary-fixed: #410003;
+  --m3-primary-fixed-dim: #ffb3ad;
+  --m3-on-primary-fixed-variant: #930011;
+  --m3-secondary-fixed: #cae6ff;
+  --m3-on-secondary-fixed: #001e2f;
+  --m3-secondary-fixed-dim: #a5cbea;
+  --m3-on-secondary-fixed-variant: #244a64;
+  --m3-tertiary-fixed: #54fdc4;
+  --m3-on-tertiary-fixed: #002116;
+  --m3-tertiary-fixed-dim: #27e0a9;
+  --m3-on-tertiary-fixed-variant: #00513b;
+}
+
+.dark {
+  /* Esquema oscuro CIEMHCAVI (M3) */
+  --background: #131b2e;
+  --foreground: #eef0ff;
+  --card: #1b2337;
+  --card-foreground: #eef0ff;
+  --popover: #1b2337;
+  --popover-foreground: #eef0ff;
+  --primary: #ffb3ab;
+  --primary-foreground: #69000c;
+  --secondary: #a5cbea;
+  --secondary-foreground: #00344f;
+  --muted: #202841;
+  --muted-foreground: #c5c6dd;
+  --accent: #202841;
+  --accent-foreground: #eef0ff;
+  --destructive: #ffb4ab;
+  --border: #45475f;
+  --input: #45475f;
+  --ring: #ffb3ab;
+  --chart-1: #ffb3ab;
+  --chart-2: #a5cbea;
+  --chart-3: #54fdc4;
+  --chart-4: #ffdad6;
+  --chart-5: #244a64;
+  --sidebar: #131b2e;
+  --sidebar-foreground: #eef0ff;
+  --sidebar-primary: #ffb3ab;
+  --sidebar-primary-foreground: #69000c;
+  --sidebar-accent: #202841;
+  --sidebar-accent-foreground: #eef0ff;
+  --sidebar-border: #45475f;
+  --sidebar-ring: #ffb3ab;
+
+  --m3-primary: #ffb3ab;
+  --m3-on-primary: #69000c;
+  --m3-primary-container: #93000f;
+  --m3-on-primary-container: #ffdad6;
+  --m3-secondary: #a5cbea;
+  --m3-on-secondary: #00344f;
+  --m3-secondary-container: #244a64;
+  --m3-on-secondary-container: #cae6ff;
+  --m3-tertiary: #4df8bf;
+  --m3-on-tertiary: #003829;
+  --m3-tertiary-container: #00513b;
+  --m3-on-tertiary-container: #54fdc4;
+  --m3-error: #ffb4ab;
+  --m3-on-error: #690005;
+  --m3-error-container: #93000a;
+  --m3-on-error-container: #ffdad6;
+  --m3-background: #131b2e;
+  --m3-on-background: #e2e7ff;
+  --m3-surface: #131b2e;
+  --m3-on-surface: #e2e7ff;
+  --m3-surface-variant: #45475f;
+  --m3-on-surface-variant: #c5c6dd;
+  --m3-surface-dim: #0d1426;
+  --m3-surface-bright: #3a415c;
+  --m3-surface-container-lowest: #0d1426;
+  --m3-surface-container-low: #1b2337;
+  --m3-surface-container: #202841;
+  --m3-surface-container-high: #2b3350;
+  --m3-surface-container-highest: #363e5c;
+  --m3-outline: #8a8fae;
+  --m3-outline-variant: #45475f;
+  --m3-inverse-surface: #eef0ff;
+  --m3-inverse-on-surface: #131b2e;
+  --m3-inverse-primary: #970012;
+  --m3-surface-tint: #ffb3ab;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    height: 100%;
+  }
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased;
+    overscroll-behavior: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}

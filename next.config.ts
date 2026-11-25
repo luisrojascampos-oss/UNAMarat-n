@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  /* config options here */
+  // Incluye la base de semilla en las funciones serverless (Vercel)
+  outputFileTracingIncludes: {
+    "/**": ["./db/seed.db"],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
